@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 using static BASE.DataModel;
+
 
 namespace BASE
 {
@@ -21,6 +23,7 @@ namespace BASE
         {
             this.products = products;
 
+
         }
 
         /// <summary>
@@ -33,7 +36,20 @@ namespace BASE
         {
 
             List<int> ans = new List<int>();
-            #region 判斷計算哪個欄位
+            #region 檢查
+
+            //數字異常
+            if (groupNum < -1)
+            {
+                Exception ex = new OverflowException();
+                throw ex;
+            }
+            //沒有該欄位
+            if (colName == "error")
+            {
+                Exception ex = new ArgumentException();
+                throw ex;
+            }
             #endregion
             #region 分組塞值
             #endregion
@@ -56,6 +72,8 @@ namespace BASE
             }
             return ans;
         }
+
+
     }
 
 
