@@ -9,7 +9,7 @@ namespace UnitTestProject1
     [TestClass]
     public class UnitTest1
     {
-        public static List<Product> ProductService()
+        private static List<Product> GetProducts()
         {
             List<Product> products = new List<Product>();
             products.Add(new Product(1, 1, 11, 21));
@@ -32,11 +32,11 @@ namespace UnitTestProject1
         {
             //arrange
             //建立假資料
-            List<DataModel.Product> products = ProductService();
+            List<DataModel.Product> products = GetProducts();
             Calculator target = new Calculator(products);
 
             //act
-            var actual = target.sum("cost", 4);
+            var actual = target.Sum("cost", 4);
             var expected = new int[] { 6, 15, 24, 21 };
 
             //assert
@@ -49,11 +49,11 @@ namespace UnitTestProject1
         {
             //arrange
             //建立假資料
-            List<DataModel.Product> products = ProductService();
+            List<DataModel.Product> products = GetProducts();
             Calculator target = new Calculator(products);
 
             //act
-            var actual = target.sum("revenue", 3);
+            var actual = target.Sum("revenue", 3);
             var expected = new int[] { 50, 66, 60 };
 
             //assert
@@ -66,22 +66,22 @@ namespace UnitTestProject1
         public void Test_colName_Error()
         {
             //arrange
-            List<DataModel.Product> products = ProductService();
+            List<DataModel.Product> products = GetProducts();
             Calculator target = new Calculator(products);
             //act
-            var actual = target.sum("error", 3);
+            var actual = target.Sum("error", 3);
             //assert
         }
         [TestMethod]
-        [TestCategory("error"), TestCategory("error2")]
+        [TestCategory("error")]
         [ExpectedException(typeof(OverflowException))]
         public void Test_groupNum_Small_Than_0_Should_Error()
         {
             //arrange
-            List<DataModel.Product> products = ProductService();
+            List<DataModel.Product> products = GetProducts();
             Calculator target = new Calculator(products);
             //act
-            var actual = target.sum("revenue", -999);
+            var actual = target.Sum("revenue", -999);
             //assert
         }
     }

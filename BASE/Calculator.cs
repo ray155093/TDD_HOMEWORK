@@ -32,7 +32,7 @@ namespace BASE
         /// <param name="colName"></param>
         /// <param name="groupNum"></param>
         /// <returns></returns>
-        public List<int> sum(string colName, int groupNum)
+        public List<int> Sum(string colName, int groupNum)
         {
 
             List<int> ans = new List<int>();
